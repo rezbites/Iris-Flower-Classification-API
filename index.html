@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iris Flower Classifier 🌸</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .iris-img { max-width: 250px; margin: 15px auto; display: block; }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container text-center py-5">
+        <h1>🌸 Iris Flower Classifier</h1>
+        <form id="irisForm" class="mt-4 mx-auto col-12 col-md-6 p-4 rounded shadow bg-white">
+            <div class="mb-3">
+                <label for="sepal_length" class="form-label">Sepal Length</label>
+                <input type="number" class="form-control" id="sepal_length" step="0.1" min="0" required>
+            </div>
+            <div class="mb-3">
+                <label for="sepal_width" class="form-label">Sepal Width</label>
+                <input type="number" class="form-control" id="sepal_width" step="0.1" min="0" required>
+            </div>
+            <div class="mb-3">
+                <label for="petal_length" class="form-label">Petal Length</label>
+                <input type="number" class="form-control" id="petal_length" step="0.1" min="0" required>
+            </div>
+            <div class="mb-3">
+                <label for="petal_width" class="form-label">Petal Width</label>
+                <input type="number" class="form-control" id="petal_width" step="0.1" min="0" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Classify</button>
+        </form>
+        <div class="mt-4" id="result" style="display:none;">
+            <h3>Prediction: <span id="species"></span></h3>
+            <img id="speciesImg" class="iris-img" src="" alt="Iris Flower">
+        </div>
+    </div>
+    <script>
+      const form = document.getElementById('irisForm');
+      form.onsubmit = async (e) => {
+          e.preventDefault();
+          const data = {
+              sepal_length: parseFloat(document.getElementById('sepal_length').value),
+              sepal_width: parseFloat(document.getElementById('sepal_width').value),
+              petal_length: parseFloat(document.getElementById('petal_length').value),
+              petal_width: parseFloat(document.getElementById('petal_width').value),
+          };
+          const response = await fetch('/predict', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify(data),
+          });
+          const res = await response.json();
+          document.getElementById('species').textContent = res.species;
+          document.getElementById('speciesImg').src = `/static/${res.image}`;
+          document.getElementById('result').style.display = '';
+      }
+    </script>
+</body>
+</html>
