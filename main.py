@@ -21,8 +21,8 @@ app.add_middleware(
 
 # Load model
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "iris_model.pkl")
-with open(MODEL_PATH, "rb") as f:
+
+with open("iris_model.pkl", "rb") as f:
     model = pickle.load(f)
 
 
@@ -38,10 +38,10 @@ class IrisInput(BaseModel):
     petal_length: float
     petal_width: float
 
-HTML_PATH = os.path.join(os.path.dirname(__file__), "index.html")
+
 @app.get("/", response_class=HTMLResponse)
 def read_root():
-    with open(HTML_PATH, encoding="utf-8") as f:
+    with open("index.html", encoding="utf-8") as f:
         return f.read()
 
 @app.post("/predict")
