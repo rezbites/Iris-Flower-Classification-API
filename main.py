@@ -7,7 +7,8 @@ import pickle
 import numpy as np
 import os 
 app = FastAPI()
-
+import sklearn
+print(sklearn.__version__)
 # Mount static files (for images)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
