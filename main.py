@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 import pickle
 import numpy as np
-
+import os 
 app = FastAPI()
 
 # Mount static files (for images)
@@ -20,8 +20,11 @@ app.add_middleware(
 )
 
 # Load model
-with open("iris_model.pkl", "rb") as f:
+
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "iris_model.pkl")
+with open(MODEL_PATH, "rb") as f:
     model = pickle.load(f)
+
 
 label_map = {
     'Iris-setosa': {"name": "Iris Setosa", "img": "Iris Setosa.jpg"},
@@ -35,9 +38,10 @@ class IrisInput(BaseModel):
     petal_length: float
     petal_width: float
 
+HTML_PATH = os.path.join(os.path.dirname(__file__), "index.html")
 @app.get("/", response_class=HTMLResponse)
 def read_root():
-    with open("index.html", encoding="utf-8") as f:
+    with open(HTML_PATH, encoding="utf-8") as f:
         return f.read()
 
 @app.post("/predict")
