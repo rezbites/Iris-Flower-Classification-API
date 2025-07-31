@@ -1,6 +1,6 @@
-fastapi
-uvicorn
-gunicorn
+fastapi==0.116.1
+uvicorn==0.35.0
+gunicorn==23.0.0           # or your currently working version
 scikit-learn==1.2.2
-numpy
-pydantic
+numpy==1.26.4
+pydantic==2.11.7
