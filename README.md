@@ -5,17 +5,12 @@ Classify Iris species by entering **sepal** and **petal** measurements and insta
 
 ---
 
-## 🌐 Demo
 
-![App Screenshot](static/Iris%20Versicolor.jpg)
-
----
 
 ## 🚀 Features
 
 - ✅ **FastAPI backend** serving a trained ML model (`iris_model.pkl`)
 - 🔍 Predicts between **Iris Setosa**, **Iris Versicolor**, and **Iris Virginica**
-- 🌙 **Dark-themed**, modern, responsive frontend (Bootstrap-powered)
 - 🖼️ Displays an image of the predicted species
 - ⚡ Easy local setup and instant feedback
 
