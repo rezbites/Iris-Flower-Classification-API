@@ -5,6 +5,8 @@ Classify Iris species by entering **sepal** and **petal** measurements and insta
 
 ---
 
+## Deployed
+https://iris-flower-classification-api.onrender.com/
 
 
 ## 🚀 Features
